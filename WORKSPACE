@@ -54,3 +54,17 @@ llvm_toolchain(
 load("@llvm_toolchain//:toolchains.bzl", "llvm_register_toolchains")
 
 llvm_register_toolchains()
+
+http_archive(
+    name = "com_google_absl",
+    sha256 = "5366d7e7fa7ba0d915014d387b66d0d002c03236448e1ba9ef98122c13b35c36",
+    strip_prefix = "abseil-cpp-20230125.3",
+    urls = ["https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.3.tar.gz"],
+)
+
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "ad7fdba11ea011c1d925b3289cf4af2c66a352e18d4c7264392fead75e919363",
+    strip_prefix = "googletest-1.13.0",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/v1.13.0.tar.gz"],
+)
