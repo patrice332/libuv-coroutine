@@ -20,6 +20,7 @@ lint:
     - trufflehog@3.42.0
     - yamllint@1.32.0
     - clang-tidy@16.0.6
+    - clang-format@16.0.6
   bazel:
     compiler_override_paths:
       - os: linux
