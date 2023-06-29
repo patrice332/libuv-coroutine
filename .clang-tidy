@@ -1,2 +1,9 @@
 ---
-Checks:          '-*'
+Checks:          '-*,
+                  abseil-*,
+                  bugprone-*,
+                  google-*,
+                  performance-*,
+                  clang-diagnostic-*,
+                  modernize-*,
+                  readability-*'
