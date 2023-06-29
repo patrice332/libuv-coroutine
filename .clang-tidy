@@ -6,4 +6,5 @@ Checks:          '-*,
                   performance-*,
                   clang-diagnostic-*,
                   modernize-*,
+                  -modernize-use-trailing-return-type,
                   readability-*'
