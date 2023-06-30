@@ -1,4 +1,4 @@
-#include "src/utils/sync_wait.h"
+#include "uv-coro/utils/sync_wait.h"
 
 #include <__coroutine/trivial_awaitables.h>
 

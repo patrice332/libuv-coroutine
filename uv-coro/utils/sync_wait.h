@@ -1,7 +1,7 @@
 #pragma once
 
-#include "src/utils/fire_once_event.h"
-#include "src/utils/sync_wait_task.h"
+#include "uv-coro/utils/fire_once_event.h"
+#include "uv-coro/utils/sync_wait_task.h"
 
 namespace lib_uv_coro::utils {
 
