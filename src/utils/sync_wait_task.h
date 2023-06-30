@@ -8,55 +8,55 @@
 
 namespace lib_uv_coro::utils {
 
-struct sync_wait_task_promise;
+struct SyncWaitTaskPromise;
 
 // sync_wait_task is a utility struct to allow you to wait on an async task in a
 // sync context. You should not be using it directly. Use sync_wait(task t);
-struct [[nodiscard]] sync_wait_task {
+struct [[nodiscard]] SyncWaitTask {
  public:
-  using promise_type = sync_wait_task_promise;
+  using promise_type = SyncWaitTaskPromise;
 
-  explicit sync_wait_task(std::coroutine_handle<sync_wait_task_promise> coro);
-  sync_wait_task(const sync_wait_task& o) = delete;
-  sync_wait_task& operator=(const sync_wait_task& o) = delete;
-  sync_wait_task(sync_wait_task&& o) = delete;
-  sync_wait_task& operator=(sync_wait_task&& o) = delete;
-  ~sync_wait_task();
+  explicit SyncWaitTask(std::coroutine_handle<SyncWaitTaskPromise> coro);
+  SyncWaitTask(const SyncWaitTask& o) = delete;
+  SyncWaitTask& operator=(const SyncWaitTask& o) = delete;
+  SyncWaitTask(SyncWaitTask&& o) = delete;
+  SyncWaitTask& operator=(SyncWaitTask&& o) = delete;
+  ~SyncWaitTask();
 
-  void run(fire_once_event& event);
+  void Run(FireOnceEvent& event);
 
  private:
-  std::coroutine_handle<sync_wait_task_promise> m_handle;
+  std::coroutine_handle<SyncWaitTaskPromise> handle_;
 };
 
 // Promise of the wait task
-struct sync_wait_task_promise {
+struct SyncWaitTaskPromise {
  public:
   [[nodiscard]] static std::suspend_always initial_suspend() noexcept;
 
-  struct awaiter {
+  struct Awaiter {
     static bool await_ready() noexcept;
 
     static void await_suspend(
-        std::coroutine_handle<sync_wait_task_promise> coro) noexcept;
+        std::coroutine_handle<SyncWaitTaskPromise> coro) noexcept;
 
     void await_resume() noexcept;
   };
 
-  [[nodiscard]] static awaiter final_suspend() noexcept;
+  [[nodiscard]] static Awaiter final_suspend() noexcept;
 
-  sync_wait_task get_return_object() noexcept;
+  SyncWaitTask get_return_object() noexcept;
 
   static void unhandled_exception() noexcept;
 
  private:
-  friend struct sync_wait_task;
-  fire_once_event* m_event = nullptr;
+  friend struct SyncWaitTask;
+  FireOnceEvent* event_ = nullptr;
 };
 
 // Create a sync_wait_task out of an awaitable object
 template <typename Task>
-sync_wait_task make_sync_wait_task(Task&& task) {
+SyncWaitTask MakeSyncWaitTask(Task&& task) {
   co_await task;
 }
 

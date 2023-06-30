@@ -14,7 +14,7 @@ TEST(SyncWait, sanity) {
     ran = true;
     return {};
   };
-  sync_wait(coro());
+  SyncWait(coro());
   EXPECT_TRUE(ran);
 }
 

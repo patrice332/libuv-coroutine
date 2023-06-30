@@ -2,11 +2,11 @@
 
 namespace lib_uv_coro::utils {
 
-void fire_once_event::set() {
-  m_flag.test_and_set();
-  m_flag.notify_all();
+void FireOnceEvent::Set() {
+  flag_.test_and_set();
+  flag_.notify_all();
 }
 
-void fire_once_event::wait() { m_flag.wait(false); }
+void FireOnceEvent::Wait() { flag_.wait(false); }
 
 }  // namespace lib_uv_coro::utils

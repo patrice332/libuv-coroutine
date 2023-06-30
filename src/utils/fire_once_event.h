@@ -5,13 +5,13 @@
 namespace lib_uv_coro::utils {
 
 // Wrapper around atomic flags
-struct fire_once_event {
+struct FireOnceEvent {
  public:
-  void set();
-  void wait();
+  void Set();
+  void Wait();
 
  private:
-  std::atomic_flag m_flag;
+  std::atomic_flag flag_;
 };
 
 }  // namespace lib_uv_coro::utils

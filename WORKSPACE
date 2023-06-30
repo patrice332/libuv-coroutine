@@ -63,6 +63,13 @@ http_archive(
 )
 
 http_archive(
+    name = "com_google_googletest",
+    sha256 = "ad7fdba11ea011c1d925b3289cf4af2c66a352e18d4c7264392fead75e919363",
+    strip_prefix = "googletest-1.13.0",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/v1.13.0.tar.gz"],
+)
+
+http_archive(
     name = "rules_foreign_cc",
     sha256 = "2a4d07cd64b0719b39a7c12218a3e507672b82a97b98c6a89d38565894cf7c51",
     strip_prefix = "rules_foreign_cc-0.9.0",
