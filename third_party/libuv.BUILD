@@ -9,4 +9,5 @@ cmake(
     name = "libuv",
     generate_args = ["-GNinja"],
     lib_source = ":srcs",
+    visibility = ["//visibility:public"],
 )
