@@ -1,2 +1,3 @@
 build --incompatible_enable_cc_toolchain_resolution
+build --experimental_cc_implementation_deps
 build --experimental_sandbox_base=/dev/shm

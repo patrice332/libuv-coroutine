@@ -8,9 +8,7 @@ Checks:          'abseil-*,
                   -modernize-use-trailing-return-type,
                   readability-*'
 WarningsAsErrors: '*'
-HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
-FormatStyle:     file
+HeaderFilterRegex: \./.*
 CheckOptions:
   - key:             readability-identifier-naming.ClassCase
     value:           CamelCase
