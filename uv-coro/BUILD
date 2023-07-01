@@ -1,4 +1,4 @@
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
     name = "uv_awaitable",
@@ -23,5 +23,17 @@ cc_library(
     ],
     deps = [
         ":uv_awaitable",
+    ],
+)
+
+cc_test(
+    name = "uv_file_test",
+    srcs = [
+        "uv_file_test.cc",
+    ],
+    deps = [
+        ":uv_file",
+        "@com_github_libuv//:libuv",
+        "@com_google_googletest//:gtest_main",
     ],
 )

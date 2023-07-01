@@ -70,6 +70,13 @@ http_archive(
 )
 
 http_archive(
+    name = "com_googlesource_code_re2",
+    sha256 = "18cf85922e27fad3ed9c96a27733037da445f35eb1a2744c306a37c6d11e95c4",
+    strip_prefix = "re2-2023-07-01",
+    urls = ["https://github.com/google/re2/archive/refs/tags/2023-07-01.tar.gz"],
+)
+
+http_archive(
     name = "rules_foreign_cc",
     sha256 = "2a4d07cd64b0719b39a7c12218a3e507672b82a97b98c6a89d38565894cf7c51",
     strip_prefix = "rules_foreign_cc-0.9.0",
