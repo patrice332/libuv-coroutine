@@ -6,7 +6,7 @@
 
 #include "uv-coro/utils/fire_once_event.h"
 
-namespace lib_uv_coro::utils {
+namespace uv_coro::utils {
 
 struct SyncWaitTaskPromise;
 
@@ -68,4 +68,4 @@ SyncWaitTask MakeSyncWaitTask(Task&& task) {
   co_await task;
 }
 
-}  // namespace lib_uv_coro::utils
+}  // namespace uv_coro::utils

@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-namespace lib_uv_coro::utils {
+namespace uv_coro::utils {
 
 namespace {
 
@@ -20,4 +20,4 @@ TEST(SyncWait, sanity) {
 
 }  // namespace
 
-}  // namespace lib_uv_coro::utils
+}  // namespace uv_coro::utils

@@ -2,7 +2,7 @@
 
 #include "uv-coro/utils/fire_once_event.h"
 
-namespace lib_uv_coro::utils {
+namespace uv_coro::utils {
 
 void SyncWaitTaskPromise::Awaiter::await_suspend(
     std::coroutine_handle<SyncWaitTaskPromise> coro) noexcept {
@@ -46,4 +46,4 @@ void SyncWaitTask::Run(FireOnceEvent& event) {
   handle_.resume();
 }
 
-}  // namespace lib_uv_coro::utils
+}  // namespace uv_coro::utils
