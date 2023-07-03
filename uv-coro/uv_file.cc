@@ -28,7 +28,8 @@ class FsOp<void> {
 Awaitable<FileHandle> Open(uv_loop_t* loop, const char* path, int flags,
                            int mode) {
   return Awaitable<FileHandle>(
-      [loop, path, flags, mode](std::function<void(FileHandle)> callback) {
+      [loop, path, flags, mode](std::coroutine_handle<> /* handle */,
+                                std::function<void(FileHandle)> callback) {
         using OpenFsOp = FsOp<FileHandle>;
         auto* ptr = new OpenFsOp();
         ptr->CB = std::move(callback);
@@ -43,7 +44,8 @@ Awaitable<FileHandle> Open(uv_loop_t* loop, const char* path, int flags,
 }
 
 Awaitable<void> Close(uv_loop_t* loop, FileHandle handle) {
-  return Awaitable<void>([loop, handle](std::function<void()> callback) {
+  return Awaitable<void>([loop, handle](std::coroutine_handle<> /*handle*/,
+                                        std::function<void()> callback) {
     using CloseFsOp = FsOp<void>;
     auto* ptr = new CloseFsOp();
     ptr->CB = std::move(callback);
@@ -61,7 +63,8 @@ Awaitable<void> Close(uv_loop_t* loop, FileHandle handle) {
 Awaitable<ssize_t> Read(uv_loop_t* loop, FileHandle handle,
                         std::span<Buffer> buffers, std::int64_t offset) {
   return Awaitable<ssize_t>(
-      [loop, handle, buffers, offset](std::function<void(ssize_t)> callback) {
+      [loop, handle, buffers, offset](std::coroutine_handle<> /*handle*/,
+                                      std::function<void(ssize_t)> callback) {
         using ReadFsOp = FsOp<ssize_t>;
         auto* ptr = new ReadFsOp();
         ptr->CB = std::move(callback);
@@ -80,7 +83,8 @@ Awaitable<ssize_t> Read(uv_loop_t* loop, FileHandle handle,
 Awaitable<ssize_t> Write(uv_loop_t* loop, FileHandle handle,
                          std::span<ConstBuffer> buffers, std::int64_t offset) {
   return Awaitable<ssize_t>(
-      [loop, handle, buffers, offset](std::function<void(ssize_t)> callback) {
+      [loop, handle, buffers, offset](std::coroutine_handle<> /*handle*/,
+                                      std::function<void(ssize_t)> callback) {
         using ReadFsOp = FsOp<ssize_t>;
         auto* ptr = new ReadFsOp();
         ptr->CB = std::move(callback);

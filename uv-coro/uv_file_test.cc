@@ -24,10 +24,10 @@ struct Task {
     static constexpr std::suspend_never final_suspend() noexcept { return {}; }
 
     // trunk-ignore(clang-tidy/readability-identifier-naming)
-    void return_void() {}
+    static constexpr void return_void() {}
 
     // trunk-ignore(clang-tidy/readability-identifier-naming)
-    void unhandled_exception() {}
+    static constexpr void unhandled_exception() {}
   };
 };
 

@@ -9,7 +9,8 @@ namespace uv_coro {
 template <typename T>
 class [[nodiscard]] Awaitable {
  public:
-  using CallbackType = std::function<void(std::function<void(T)>)>;
+  using CallbackType = std::function<void(std::coroutine_handle<> handle,
+                                          std::function<void(T)>)>;
 
   explicit Awaitable(CallbackType callback) : cb_{std::move(callback)} {}
   Awaitable(const Awaitable& obj) = delete;
@@ -23,7 +24,7 @@ class [[nodiscard]] Awaitable {
 
   // trunk-ignore(clang-tidy/readability-identifier-naming)
   void await_suspend(std::coroutine_handle<> handle) {
-    cb_([this, handle](T val) {
+    cb_(handle, [this, handle](T val) {
       rv_.emplace(std::move(val));
       handle();
     });
@@ -40,7 +41,8 @@ class [[nodiscard]] Awaitable {
 template <>
 class [[nodiscard]] Awaitable<void> {
  public:
-  using CallbackType = std::function<void(std::function<void()>)>;
+  using CallbackType =
+      std::function<void(std::coroutine_handle<>, std::function<void()>)>;
 
   explicit Awaitable(CallbackType callback) : cb_{std::move(callback)} {}
   Awaitable(const Awaitable& obj) = delete;
@@ -54,7 +56,7 @@ class [[nodiscard]] Awaitable<void> {
 
   // trunk-ignore(clang-tidy/readability-identifier-naming)
   void await_suspend(std::coroutine_handle<> handle) {
-    cb_([handle]() { handle(); });
+    cb_(handle, [handle]() { handle(); });
   }
 
   // trunk-ignore(clang-tidy/readability-identifier-naming)
